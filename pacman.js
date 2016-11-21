@@ -1,7 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
-
+var powerPellets = 4;
 
 // Define your ghosts here
 var inky = {
@@ -43,6 +43,7 @@ function drawScreen() {
 	clearScreen();
 	setTimeout(function() {
 		displayStats();
+		displayPowerPellets();
 		displayMenu();
 		displayPrompt();
 	}, 10);
@@ -56,8 +57,12 @@ function displayStats() {
 	console.log('Score: ' + score + '     Lives: ' + lives);
 }
 
+function displayPowerPellets() {
+	console.log('\nPower-Pellets: ' + powerPellets);
+}
+
 function displayMenu() {
-	console.log('\n\nSelect Option:\n');  // each \n creates a new line
+	console.log('\nSelect Option:\n');  // each \n creates a new line
 	console.log('(d) Eat Dot');
 	console.log('(1) Eat Inky');
 	console.log('(2) Eat Blinky');
