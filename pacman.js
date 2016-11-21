@@ -3,6 +3,7 @@ var score = 0;
 var lives = 2;
 var powerPellets = 4;
 var dots = 240;
+var ghostsEaten = 0;
 
 // Define your ghosts here
 var inky = {
@@ -127,10 +128,23 @@ function eatGhost(ghost) {
 	lives--;
 	console.log('\n ' + ghost.name + ' kills Pac-Man!');
 } else {
-	score += 200;
+	eatenGhostPoints();
+	ghostsEaten++;
 	console.log('\n ' + ghost.name + ' has just been eaten!');
 	ghost.edible = false;
 };
+};
+
+function eatenGhostPoints() {
+	if (ghostsEaten === 0) {
+	score += 200;
+} else if (ghostsEaten === 1) {
+	score += 400;
+} else if (ghostsEaten === 2) {
+	score += 800;
+} else {
+	score += 1600;
+}
 };
 
 function eatPowerPellet() {
