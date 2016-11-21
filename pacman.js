@@ -64,6 +64,7 @@ function displayPowerPellets() {
 function displayMenu() {
 	console.log('\nSelect Option:\n');  // each \n creates a new line
 	console.log('(d) Eat Dot');
+	console.log('(p) Eat Power-Pellet');
 	console.log('(1) Eat Inky');
 	console.log('(2) Eat Blinky');
 	console.log('(3) Eat Pinky');
@@ -76,25 +77,38 @@ function displayPrompt() {
 	process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
 
-
 // Menu Options
 function eatDot() {
 	console.log('\nChomp!');
 	score += 10;
 }
 
-function ghost() {
-	for (var i = 0; i < ghosts.length; i++) {
-		var ghost = ghosts[i];
-		console.log('\nChomp ' + ghost);
-		score += 50;
-	}
-}
+// function ghost() {
+// 	for (var i = 0; i < ghosts.length; i++) {
+// 		var ghost = ghosts[i];
+// 	}
+// }
 
 function eatGhost(ghost) {
 	if (ghost.edible === false) {
 	lives--;
 	console.log('\n ' + ghost.name + ' kills Pac-Man!');
+	}
+}
+
+function eatPowerPellet() {
+	if (powerPellets > 0) {
+		score += 50;
+		powerPellets--;
+		ghostsEdible();
+	} else {
+		console.log('\nThere are no more Power-Pellets.')
+	}
+}
+
+function ghostsEdible() {
+	for (var i = 0; i < ghosts.length; i++) {
+		ghosts[i].edible = true;
 	}
 }
 // Process Player's Input
@@ -106,6 +120,9 @@ function processInput(key) {
 			break;
 		case 'd':
 			eatDot();
+			break;
+		case 'p':
+			eatPowerPellet();
 			break;
 		case '1':
 			eatGhost(inky);
