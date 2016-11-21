@@ -104,22 +104,29 @@ function processInput(key) {
 			break;
 		case '1':
 			eatGhost(inky);
+			livesCheck(lives);
 			break;
 		case '2':
 			eatGhost(blinky);
+			livesCheck(lives);
 			break;
 		case '3':
 			eatGhost(pinky);
+			livesCheck(lives);
 			break;
 		case '4':
 			eatGhost(clyde);
+			livesCheck(lives);
 			break;
 		default:
 			console.log('\nInvalid Command!');
 	}
 }
-
-
+function livesCheck(lives) {
+	if (lives < 0) {
+		process.exit();
+	}
+}
 //
 // YOU PROBABLY DON'T WANT TO CHANGE CODE BELOW THIS LINE
 //
